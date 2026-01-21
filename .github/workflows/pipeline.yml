@@ -1,0 +1,47 @@
+name: "Estrutura de diretorios e arquivos"
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: 
+
+env:
+  NODE_VERSION: "18"
+
+jobs:
+  demonstrando-estrutura:
+    name: "Demonstrando a estrutura basica"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout do Código"
+        uses: actions/checkout@v4
+
+      - name: "Mostrar estrutura  .github/workflows"
+        run: |
+          echo "== ESTRUTURA DE DIRETOÓRIOS E ARQUIVOS  .github/workflows =="
+          ls -la .github/workflows
+          echo ""
+          echo "== Total de workflows: $(ls -1 .github/workflows | wc -l)"
+
+      - name: "Elementos obrigatórios do workflow"
+        run: |
+          echo "== ELEMENTOS OBRIGATÓRIOS DO WORKFLOW == "
+          echo "1. name: Nome do workflow"
+          echo "2. on: Evento(s) que disparam o workflow"
+          echo "3. jobs: Conjunto de trabalhos a serem executados"
+          echo "4.runs-on: Define o ambiente de execução do job"
+          echo "5. steps: Passos individuais dentro de um job" 
+          echo ""
+          echo " Exemplo de estrutura obrigatória: 5 "
+
+      - name : "Variaveis e Contexto"
+        run: |
+          echo "== "
+          echo "== Varieaveis env: ${{ env.NODE_VERSION }} =="
+          echo " 1. env: Definição das variaveis de ambiente"
+          echo " 2.  contextos: Acesso a informações do workflow, job, runners, etc"
+          echo ""
+          echo "Total de variaveis e contextos: 2 "
+           
+      
